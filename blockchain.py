@@ -130,31 +130,7 @@ class Blockchain:
 # Create an instance of the blockchain
 blockchain = Blockchain()
 
-# # Add some proposals
-# blockchain.add_proposal("Proposal 1")
-# blockchain.add_proposal("Proposal 2")
 
-# # Authenticate a user
-# blockchain.authenticate_user("user1")
-# blockchain.authenticate_user("user2")
-
-# # Vote for a proposal
-# blockchain.vote("user1", "Proposal 1")
-
-# blockchain.mine_pending_transaction()
-# blockchain.vote("user2", "Proposal 2")
-
-# blockchain.mine_pending_transaction()
-# # Mine the pending transactions
-
-# print(blockchain.get_latest_block)
-# # Get the vote count for a proposal
-# vote_count = blockchain.get_vote_count("Proposal 2")
-# print("Vote count for Proposal 2: ", vote_count)
-
-# # View transactions for a user
-# transactions = blockchain.view_user("user1")
-# print("Transactions for user1: ", transactions)
 
 
 proposals = ["a","b","c","d"]
@@ -170,15 +146,7 @@ for j in voters:
 transactionHistory = dict.fromkeys(voters)
 print(transactionHistory)
 
-# candidate = input("Enter your candidate: ")
-# blockchain.vote("manas",candidate)
-# blockchain.mine_pending_transaction()
-# transactionHistory["manas"] = blockchain.view_user("manas")
 
-# candidate = input("Enter your candidate: ")
-# blockchain.vote("amlan",candidate)
-# blockchain.mine_pending_transaction()
-# transactionHistory["amlan"] = blockchain.view_user("amlan")
 for j in voters:
     candidate = input("Enter your candidate: ")
     blockchain.vote(j,candidate)
