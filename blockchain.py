@@ -2,7 +2,7 @@ import hashlib
 import json
 import time
 import random
-from sympy import randprime
+from createprime import generate_prime
 class Block:
     def __init__(self,index,timestamp,transactions,previousHash):
         self.index = index
@@ -41,7 +41,8 @@ class Transaction:
 
     def verifyTransaction(self):
         g = 3
-        p = randprime(2**2047, 2**2048 - 1)
+        p = generate_prime(32)
+        print(p)
         return True
 
 
@@ -88,7 +89,7 @@ class Blockchain:
         count = 0
         for block in self.chain:
             for transaction in block.transactions:
-                if transaction["reciever"] == proposal:
+                if transaction["receiver"] == proposal:
                     count += 1
 
         return count                            
