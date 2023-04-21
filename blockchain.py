@@ -133,8 +133,7 @@ blockchain = Blockchain()
 
 
 
-proposals = ["a"]
-            #  ,"b","c","d"]
+proposals = ["a","b","c","d"]
 
 for i in proposals:
     blockchain.add_proposal(i)
@@ -160,4 +159,6 @@ for i in proposals:
 
 for j in voters:
     print("Transaction for "+j+" : "+str(transactionHistory[j]))
+
+
 

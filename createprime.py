@@ -21,4 +21,3 @@ def generate_prime(n_bits):
             return p
 
 prime = generate_prime(32)
-print(prime)
