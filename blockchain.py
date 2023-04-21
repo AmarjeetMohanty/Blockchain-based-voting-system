@@ -3,6 +3,7 @@ import json
 import time
 import random
 from createprime import generate_prime
+
 class Block:
     def __init__(self,index,timestamp,transactions,previousHash):
         self.index = index
@@ -42,11 +43,33 @@ class Transaction:
     def verifyTransaction(self):
         g = 3
         p = generate_prime(32)
-        print(p)
-        return True
 
+        a = random.randint(1,p-1)
 
+        A = pow(g,a,p)
+        
+        verifier = Verifier(g,p)
+        verifier.createPublicKey()
+        B = verifier.B
+        K = verifier.createSharedKey(A)
+        
+        K_prime = pow(B,a,p)
+        print(K==K_prime)
+        return K==K_prime
+    
+class Verifier:
+    def __init__(self,g,p):
+        self.g = g
+        self.p = p
+        self.b = random.randint(1,p-1) 
+        self.B = None   
 
+    def createPublicKey(self):
+        self.B = pow(self.g,self.b,self.p)
+
+    def createSharedKey(self,A):
+        K = pow(A,self.b,self.p)
+        return K
 
 class Blockchain:
     def __init__(self):
@@ -98,7 +121,7 @@ class Blockchain:
         transactions = []
         for block in self.chain:
             for transaction in block.transactions:
-                if transaction["sender"] == address or transaction["reciever"] == address:
+                if transaction["sender"] == address or transaction["receiver"] == address:
                     transactions.append(transaction)
         return transactions            
 
@@ -116,8 +139,7 @@ proposals = ["a"]
 for i in proposals:
     blockchain.add_proposal(i)
 
-voters = ["manas"]
-        #   ,"amlan","amarjeet","bilal","waleed","ayushman","jaskirat","tarun","ankit","shaantanu"]
+voters = ["manas","amlan","amarjeet","bilal","waleed","ayushman","jaskirat","tarun","ankit","shaantanu"]
 
 for j in voters:
     blockchain.authenticate_user(j)
@@ -127,13 +149,13 @@ print(transactionHistory)
 
 
 for j in voters:
-    candidate = input("Enter your candidate: ")
+    candidate = input("Enter your candidate "+j+":")
     blockchain.vote(j,candidate)
     blockchain.mine_pending_transaction()
     transactionHistory[j] = blockchain.view_user(j)
 
 for i in proposals:
-    print(type(i))
+
     print("Vote count of "+i+" : "+str(blockchain.get_vote_count(i)))
 
 for j in voters:
