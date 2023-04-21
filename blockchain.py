@@ -2,8 +2,7 @@ import hashlib
 import json
 import time
 import random
-
-
+from sympy import randprime
 class Block:
     def __init__(self,index,timestamp,transactions,previousHash):
         self.index = index
@@ -34,43 +33,19 @@ class Block:
 
 
 class Transaction:
-    def __init__(self,sender,reciever,proposal):
+    def __init__(self,sender,receiver,proposal):
         self.sender = sender
-        self.reciever = reciever
+        self.receiver = receiver
         self.proposal = proposal 
         self.timestamp = time.time()
 
     def verifyTransaction(self):
-        # Generate generator g and prime p
-        g = 2
-        p = 13
+        g = 3
+        p = randprime(2**2047, 2**2048 - 1)
+        return True
 
-        # Generate random numbers a and b
-        a = random.randint(1, p-1)
-        b = random.randint(1, p-1)
 
-        # Compute A and B
-        A = pow(g, a, p)
-        B = pow(g, b, p)
 
-        # Send A and B to the other party
-        # In this case, we assume that the sender is the prover and the receiver is the verifier
-        verifier = self.receiver
-        verifier.send_proof(A, B)
-
-        # Compute A' and B'
-        A_prime = verifier.receive_A_prime()
-        B_prime = verifier.receive_B_prime()
-
-        # Compute shared key K
-        K = pow(B, a, p)
-        K_prime = pow(A_prime, b, p)
-
-        # Verify that K and K' are the same
-        return K == K_prime
-   
-
-        
 
 class Blockchain:
     def __init__(self):
@@ -93,8 +68,10 @@ class Blockchain:
         self.pending_transactions = []
 
     def addTransaction(self,transaction):
-        if transaction.verifyTransaction():
+        if transaction.verifyTransaction()==True:
             self.pending_transactions.append(transaction)
+        else:
+            print("error")
     
     def add_proposal(self, proposal_name):
         self.proposals.append(proposal_name)
@@ -132,13 +109,14 @@ blockchain = Blockchain()
 
 
 
-
-proposals = ["a","b","c","d"]
+proposals = ["a"]
+            #  ,"b","c","d"]
 
 for i in proposals:
     blockchain.add_proposal(i)
 
-voters = ["manas","amlan","amarjeet","bilal","waleed","ayushman","jaskirat","tarun","ankit","shaantanu"]
+voters = ["manas"]
+        #   ,"amlan","amarjeet","bilal","waleed","ayushman","jaskirat","tarun","ankit","shaantanu"]
 
 for j in voters:
     blockchain.authenticate_user(j)
