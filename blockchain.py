@@ -54,7 +54,7 @@ class Transaction:
         K = verifier.createSharedKey(A)
         
         K_prime = pow(B,a,p)
-        print(K==K_prime)
+        
         return K==K_prime
     
 class Verifier:
@@ -93,6 +93,7 @@ class Blockchain:
 
     def addTransaction(self,transaction):
         if transaction.verifyTransaction()==True:
+            print("Transaction Verified")
             self.pending_transactions.append(transaction)
         else:
             print("error")
@@ -152,13 +153,11 @@ for j in voters:
     blockchain.vote(j,candidate)
     blockchain.mine_pending_transaction()
     transactionHistory[j] = blockchain.view_user(j)
-
-for i in proposals:
-
-    print("Vote count of "+i+" : "+str(blockchain.get_vote_count(i)))
-
-for j in voters:
     print("Transaction for "+j+" : "+str(transactionHistory[j]))
+
+
+
+
 
 
 
