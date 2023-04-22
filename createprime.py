@@ -15,9 +15,11 @@ def is_prime(n):
     return True
 
 def generate_prime(n_bits):
+    """
+    This method is used to generate prime number of n bits
+    """
     while True:
         p = random.getrandbits(n_bits)
         if is_prime(p):
             return p
 
-prime = generate_prime(32)
