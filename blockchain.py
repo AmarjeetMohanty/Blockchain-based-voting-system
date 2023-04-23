@@ -178,9 +178,15 @@ class Blockchain:
 
     def vote(self,sender,reciever):
         """
-        This method allows the user to vote and 
-        it makes sure that both the user and the candidate are in their respective list
+        This method allows the user to vote , 
+        it makes sure that both the user and the candidate are in their respective list,
+        and it makes sue the voter hasn't already voted.
         """
+        for block in self.chain:
+            for transaction in block.transactions:
+                if transaction["sender"] == sender:
+                    print("Already voted")
+                    return 
         if sender in self.voters and self.voters[sender]:
             # initial instance of teh Transaction class is created 
             transaction = Transaction(sender,reciever,self.proposals.index(reciever))
@@ -248,6 +254,11 @@ for j in voters:
 
 for  i in proposals:
     print("The candidate "+i+" has recieved: "+str(blockchain.get_vote_count(i)))
+
+
+
+
+
 
 
 
