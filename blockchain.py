@@ -227,7 +227,7 @@ for i in proposals:
     blockchain.add_proposal(i)
 
 # thsi is the list of voters
-voters = ["manas","amlan","amarjeet","bilal","waleed","ayushman","jaskirat","tarun","ankit","shaantanu"]
+voters = ["aa","bb","cc","dd","ee","ff","gg","hh","ii","jj"]
 # the voters are authenticated
 for j in voters:
     blockchain.authenticate_user(j)
