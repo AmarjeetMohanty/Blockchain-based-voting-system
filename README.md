@@ -13,7 +13,6 @@ This is a Python-based Voting System, which is a command-line application that a
 
 ## Requirements
 * Python 3.x
-* SQLite3
 
 ## Getting started
 1. Clone the repository: `git clone https://github.com/AmarjeetMohanty/Python-based-voting-system.git`
