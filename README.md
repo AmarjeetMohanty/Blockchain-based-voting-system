@@ -2,7 +2,7 @@
 
 # Python-based Voting System
 
-This is a Python-based Voting System, which is a command-line application that allows users to create and participate in polls. The application uses the Python programming language and the SQLite database.
+This is a Python-based Voting System, which is a command-line application that allows users to create and participate in polls. The application uses the Python programming language .
 
 ## Features
 * Create a new poll
