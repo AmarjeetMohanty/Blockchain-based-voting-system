@@ -1,2 +1,0 @@
-
-from createprime import generate_prime
