@@ -17,7 +17,7 @@ This is a Python-based Voting System, which is a command-line application that a
 ## Getting started
 1. Clone the repository: `git clone https://github.com/AmarjeetMohanty/Python-based-voting-system.git`
 2. Install the required packages: `pip install -r requirements.txt`
-3. Run the application: `python voting_system.py`
+3. Run the application: `python blockchain.py`
 
 ## Usage
 When you run the application, you will be presented with a menu of options:
